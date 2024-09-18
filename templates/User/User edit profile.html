@@ -1,0 +1,81 @@
+{% extends 'User/user_hm_index.html' %}
+{% block body %}
+<body>
+
+<form action="/myapp/edit_user_profile_post/" method="post" enctype="multipart/form-data" name="form1" id="form1">
+    {% csrf_token %}
+  <table class="table table-bordered">
+    <tr>
+      <th>Name</th>
+      <td>
+      <input type="text" name="textfield" id="textfield" value="{{ val.Name }}" class="form-control" required/></td>
+    </tr>
+    <tr>
+        <th>Gender</th>
+        <th><select name="Gender">
+
+            <option value="Male" {% if val.Gender == 'Male' %}selected{% endif %}>Male</option>
+            <option value="Female" {% if val.Gender == 'Female' %}selected{% endif %}>Female</option>
+            <option value="Others" {% if val.Gender == 'Others' %}selected{% endif %}>Others</option>
+        </select></th>
+{#      <th>Gender</th>#}
+{#      <td><p>#}
+{#        <label>#}
+{#          <input type="radio" name="RadioGroup1" {% if val.Gender == 'Male' %}checked{% endif %} value="Male" id="RadioGroup1_0" />#}
+{#          Male</label>#}
+{#        <br />#}
+{#        <label>#}
+{#          <input type="radio" name="RadioGroup1" {% if val.Gender == 'Female' %}checked{% endif %} value="Female" id="RadioGroup1_1" />#}
+{#          Female</label>#}
+{#        <br />#}
+{#        <label>#}
+{#          <input type="radio" name="RadioGroup1" {% if val.Gender == 'Others' %}checked{% endif %} value="Others" id="RadioGroup1_2" />#}
+{#          Others</label>#}
+{#        <br />#}
+{#      </p></td>#}
+    </tr>
+    <tr>
+      <th>Date of Birth</th>
+      <td><input type="text" name="textfield2" id="textfield2" value="{{ val.Date_of_birth }}" class="form-control" required/></td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td><input type="email" name="textfield3" id="textfield3" value="{{ val.Email }}" class="form-control" required/></td>
+    </tr>
+    <tr>
+      <th>Phone Number</th>
+      <td><input type="text" name="textfield4" id="textfield4" value="{{ val.Phone_Number }}" class="form-control" required/></td>
+    </tr>
+    <tr>
+      <th>House Name</th>
+      <td><input type="text" name="textfield7" id="textfield7" value="{{ val.House_Name }}" class="form-control" required/></td>
+    </tr>
+    <tr>
+      <th>Place</th>
+      <td><input type="text" name="textfield6" id="textfield6" value="{{ val.Place }}" class="form-control" required/></td>
+    </tr>
+    <tr>
+      <th>City</th>
+      <td><input type="text" name="textfield5" id="textfield5" value="{{ val.City }}" class="form-control" required/></td>
+    </tr>
+    <tr>
+      <th>State</th>
+      <td><input type="text" name="textfield8" id="textfield8" value="{{ val.State }}" class="form-control" required/></td>
+    </tr>
+    <tr>
+      <th>Pincode</th>
+      <td><input type="text" name="textfield9" id="textfield9" value="{{ val.Pincode }}" class="form-control" required/></td>
+    </tr>
+    <tr>
+      <th>Photo</th>
+      <td><img src="{{ val.Photo }}" height="60px"width="60px">
+      <input type="file" name="fileField" id="fileField"  class="form-control" required/></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="button" id="button" value="Save" class="btn btn-success"/></td>
+    </tr>
+  </table>
+</form>
+</body>
+{% endblock %}

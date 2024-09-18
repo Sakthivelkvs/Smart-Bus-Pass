@@ -1,0 +1,57 @@
+{% extends 'User/user_hm_index.html' %}
+{% block body %}
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <table class="table table-bordered">
+    <tr>
+      <th>Name</th>
+      <td>&nbsp;{{ data.Name }}</td>
+    </tr>
+    <tr>
+      <th>Gender</th>
+      <td>&nbsp;{{ data.Gender }}</td>
+    </tr>
+    <tr>
+      <th>Date of Birth</th>
+      <td>&nbsp;{{ data.Date_of_birth }}</td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td>&nbsp;{{ data.Email }}</td>
+    </tr>
+    <tr>
+      <th>Phone Number</th>
+      <td>&nbsp;{{ data.Phone_Number }}</td>
+    </tr>
+    <tr>
+      <th>House Name</th>
+      <td>&nbsp;{{ data.House_Name }}</td>
+    </tr>
+    <tr>
+      <th>Place</th>
+      <td>&nbsp;{{ data.Place }}</td>
+    </tr>
+    <tr>
+      <th>City</th>
+      <td>&nbsp;{{ data.City }}</td>
+    </tr>
+    <tr>
+      <th>State</th>
+      <td>&nbsp;{{ data.State }}</td>
+    </tr>
+    <tr>
+      <th>Pincode</th>
+      <td>&nbsp;{{ data.Pincode }}</td>
+    </tr>
+    <tr>
+      <th>Photo</th>
+      <td><img src="{{ data.Photo }}"height="100px" width="100px">&nbsp;</td>
+    </tr>
+    <tr>
+      <th>&nbsp;</th>
+      <td><a href="/myapp/edit_user_profile/" class="btn btn-success">Edit</a></td>
+    </tr>
+  </table>
+</form>
+</body>
+{% endblock %}

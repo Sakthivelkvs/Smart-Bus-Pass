@@ -1,0 +1,72 @@
+{% extends 'Admin/admin_hm_index.html' %}
+{% block body %}
+
+<body>
+<form action="/myapp/edit_officers_post/" method="post" enctype="multipart/form-data" name="form1" id="form1">
+ {% csrf_token %}
+  <table class="table table-bordered">
+    <tr>
+      <th>Name</th>
+      <td>
+      <input type="text" name="textfield" id="textfield" value="{{ val.Name }}" class="form-control"/></td>
+    </tr>
+      <tr>
+        <th>Gender</th>
+        <th><select name="RadioGroup1">
+
+            <option value="Male" {% if val.Gender == 'Male' %}selected{% endif %}>Male</option>
+            <option value="Female" {% if val.Gender == 'Female' %}selected{% endif %}>Female</option>
+            <option value="Others" {% if val.Gender == 'Others' %}selected{% endif %}>Others</option>
+        </select></th>
+      </tr>
+{#    <tr>#}
+{#      <th>Gender</th>#}
+{#      <td>#}
+{#        <p>#}
+{#          <label>#}
+{#            <input type="radio" name="RadioGroup1" {% if val.Gender == 'Male' %}checked{% endif %} value="Male" id="RadioGroup1_0" />#}
+{#            Male</label>#}
+{#          <br />#}
+{#          <label>#}
+{#            <input type="radio" name="RadioGroup1"  {% if val.Gender == 'Female' %}checked{% endif %} value="Female" id="RadioGroup1_1" />#}
+{#            Female</label>#}
+{#          <br />#}
+{#          <label>#}
+{#            <input type="radio" name="RadioGroup1" {% if val.Gender == 'Others' %}checked{% endif %} value="Others" id="RadioGroup1_2" />#}
+{#            Others</label>#}
+{#          <br />#}
+{#      </p></td>#}
+{#    </tr>#}
+    <tr>
+      <th>Date Of Birth</th>
+      <td>
+      <input type="date" name="textfield2" id="textfield2" value="{{ val.Date_of_birth }}" class="form-control"/></td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td>
+      <input type="text" name="textfield4" id="textfield4" value="{{ val.Email }}" class="form-control"/></td>
+    </tr>
+    <tr>
+      <th>Phone Number</th>
+      <td>
+      <input type="text" name="textfield5" id="textfield5" value="{{ val.Phone_Number }}" class="form-control"/></td>
+    </tr>
+    <tr>
+      <th>Depo</th>
+      <td>
+      <input type="text" name="textfield6" id="textfield6" value="{{ val.Depo }}" class="form-control"/></td>
+    </tr>
+    <tr>
+      <th>Proof</th>
+      <td><img src="{{ val.Proof }}" height="60px"width="60px">
+          <input type="file" name="fileField" id="fileField"  class="form-control"/></td>
+    </tr>
+
+
+      <td colspan="2" align="center"><input type="submit" name="button" id="button" value="Submit" class="btn btn-success"/></td>
+    </tr>
+  </table>
+</form>
+</body>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'User/user_hm_index.html' %}
+{% block body %}
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <table class="table table-bordered">
+    <tr>
+      <th>Name</th>
+        <td>{{ data.USERS.Name }}</td>
+    </tr>
+  <tr>
+      <th>From Place</th>
+      <td>{{ data.From_place }}</td>
+      </tr>
+  <tr>
+      <th>To Place</th>
+      <td>{{ data.To_Place }}</td>
+  </tr>
+  <tr>
+      <th>Type</th>
+      <td>{{ data.Type }}</td>
+  </tr>
+  <tr>
+      <th>Date</th>
+      <td>{{ data.Date }}</td>
+  </tr>
+  <tr>
+      <th>Time_period</th>
+      <td>{{ data.Time_period }}</td>
+  </tr>
+  <tr>
+      <th>Amount</th>
+      <td>{{ data.Amouont }}</td>
+  </tr>
+  <tr>
+
+      <td colspan="2" align="center">
+         {% if expiration_date >= current_date %}
+        <p>Pass is still valid.</p>
+        {% else %}
+             <a href="/myapp/renew_pass/{{ data.id }}" class="btn btn-success">Renew</a>
+        {% endif %}
+
+      </td>
+    </tr>
+   <tr>
+              <td colspan="2" align="center"><a href="/myapp/cancel_pass/{{ data.id }}" class="btn btn-danger">Cancel</a></td>
+
+   </tr>
+  </table>
+</form>
+</body>
+{% endblock %}

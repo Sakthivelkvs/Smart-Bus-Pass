@@ -1,0 +1,25 @@
+{% extends 'Depo Officer/officer_home_index.html' %}
+{% block body %}
+
+<body>
+<form id="form1" name="form1" method="post" action="/myapp/update_pass_date_post/">
+    {% csrf_token %}
+  <table class="table table-bordered">
+    <tr>
+      <td>From_date</td>
+      <td>
+      <input type="date" value="{{ data.Valid_from|date:'Y-m-d' }}" name="textfield" id="textfield" class="form-control" required/></td>
+    </tr>
+      <input type="hidden" value="{{ data.id }}" name="id">
+
+    <tr>
+      <td>Expiry_date</td>
+         <td>
+      <input type="date" value="{{ data.Expiry_date|date:'Y-m-d' }}" name="textfield2" id="textfield" class="form-control" required/></td>
+    </tr>
+      <td colspan="2" align="center"><input type="submit" name="button" id="button" value="Update" class="btn btn-success"/></td>
+    </tr>
+  </table>
+</form>
+</body>
+{% endblock %}

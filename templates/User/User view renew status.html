@@ -1,0 +1,67 @@
+{% extends 'User/user_hm_index.html' %}
+{% block body %}
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <div class="printable_div_id" id="printable_div_id">
+      <table class="table table-bordered">
+          <tr>
+      <th>Photo</th>
+      <td><img src="{{ data.PASS_REQ.USERS.Photo }}"height="100px" width="100px">&nbsp;</td>
+    </tr>
+          <tr>
+      <th>Name</th>
+        <td>{{ data.PASS_REQ.USERS.Name }}</td>
+    </tr>
+  <tr>
+      <th>Type</th>
+      <td>{{ data.PASS_REQ.Type }}</td>
+      </tr>
+  <tr>
+      <th>Valid From</th>
+      <td>{{ data.Valid_from }}</td>
+  </tr>
+  <tr>
+      <th>Valid To</th>
+      <td>{{ data.Expiry_date }}</td>
+  </tr>
+  <tr>
+      <th>Amount</th>
+      <td>{{ data.PASS_REQ.Amouont }}</td>
+  </tr>
+  <tr>
+      <th>Status</th>
+      <td>{{ data.Status }}</td>
+  </tr>
+   <tr>
+              <td colspan="2" align="center">
+                  {% if data.Status == 'Renewed' %}
+                  <a href="" class="btn btn-success" id="dnld" onClick="printdiv('printable_div_id');">Download</a>
+                  {% elif data.Status == 'Pending' %}
+                    Waiting for approval
+                  {% endif %}
+              </td>
+
+   </tr>
+  </table>
+
+  </div>
+</form>
+
+<script>
+function printdiv(elem) {
+  var header_str = '<html><head><title>' + document.title  + '</title></head><body>';
+  var footer_str = '</body></html>';
+  var dnld = document.getElementById('dnld');
+  dnld.style.display = 'none'
+  var new_str = document.getElementById(elem).innerHTML;
+  var old_str = document.body.innerHTML;
+  document.body.innerHTML = header_str + new_str + footer_str;
+  window.print();
+  document.body.innerHTML = old_str;
+  return false;
+}
+</script>
+
+</body>
+{% endblock %}

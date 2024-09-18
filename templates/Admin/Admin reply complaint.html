@@ -1,0 +1,23 @@
+{% extends 'Admin/admin_hm_index.html' %}
+{% block body %}
+
+<body>
+<body>
+<form id="form1" name="form1" method="post" action="/myapp/send_reply_post/">
+     {% csrf_token %}
+    <input type="hidden" name="id" value="{{ id }}">
+  <table class="table table-bordered">
+    <tr>
+      <th>Reply</th>
+      <td>
+      <textarea name="textarea" id="textarea2" cols="45" rows="5"></textarea></td>
+    </tr>
+    <tr>
+      <td>
+      <td><input type="submit" name="button" id="button" value="Submit" class="btn btn-success" required/></td>
+    </tr>
+  </table>
+</form>
+</body>
+</body>
+{% endblock %}

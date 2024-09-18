@@ -1,0 +1,31 @@
+{% extends 'Depo Officer/officer_home_index.html' %}
+{% block body %}
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <table class="table table-bordered">
+    <tr>
+      <th>Name</th>
+      <td>&nbsp;{{ data.USERS.Name }}</td>
+    </tr>
+    <tr>
+      <th>From_place</th>
+      <td>&nbsp;{{ data.From_place }}</td>
+    </tr>
+    <tr>
+      <th>To_place</th>
+      <td>&nbsp;{{ data.To_Place }}</td>
+    </tr>
+    <tr>
+      <th>Type</th>
+      <td>&nbsp;{{ data.Type }}</td>
+    </tr>
+    <tr>
+      <th>Time_period</th>
+      <td>&nbsp;{{ data.Time_period }}</td>
+    </tr>
+    
+  </table>
+</form>
+</body>
+{% endblock %}

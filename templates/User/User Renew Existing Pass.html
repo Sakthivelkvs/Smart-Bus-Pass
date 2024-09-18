@@ -1,0 +1,118 @@
+{% extends 'User/user_hm_index.html' %}
+{% block body %}
+
+<body>
+<form id="form1" name="form1" method="post" action="renew_pass_post">
+    {% csrf_token %}
+<input type="hidden" name="id" id="pasId" value="{{ data.id }}">
+  <table class="table table-bordered">
+    <tr>
+      <th>From Place</th>
+      <td>{{ data.From_place }}</td>
+    </tr>
+    <tr>
+      <th>To Place</th>
+      <td>{{ data.To_Place }}</td>
+    </tr>
+    <tr>
+      <th>Type</th>
+      <td>{{ data.Type }}</td>
+    </tr>
+    <tr>
+      <th>Time Period</th>
+      <td>
+          {% if data.Type == 'Normal' %}
+              <input type="radio" name="select3" id="select3" value="1months" required/>1 Month<br>
+              <input type="radio" name="select3" id="select3" value="3months" required/>3 Month<br>
+              <input type="radio" name="select3" id="select3" value="6months" required/>6 Month<br>
+              {% elif data.Type == 'Student' %}
+              <input type="radio" name="select3" id="select3" value="12months" required/>1 year<br>
+          {% endif %}
+          </td>
+    </tr>
+    <tr>
+      <th>Amount</th>
+      <td><label for="textfield"></label>
+      <input type="text" name="textfield" id="textfield" class="form-control" readonly/></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+              <td colspan="2" align="center"><a id="makePaymentBtn" href="/myapp/payment/here" class="btn btn-info">Make Payment</a></td>
+    </tr>
+  </table>
+</form>
+
+
+<script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
+    </script>
+<script  type="text/javascript" >
+
+    $(document).on('change','#select3',function () {
+
+{#        alert($(this).val());#}
+{#        $s=$('input[type=radio]:checked',#}
+{#                '#myForm').val();#}
+{#        alert($s);#}
+{##}
+{##}
+{#        alert( $("#select1").val());#}
+{#        alert( $("#select2").val());#}
+        var currentHref = $('#makePaymentBtn').attr('href');
+
+          // Replace 'here' with your desired text
+
+
+
+        $.ajax({
+          url: "/myapp/calculate2/",
+          type: "POST",
+          data: {
+              'id': $("#pasId").val(),
+              'select3':$(this).val(),
+          },
+          dataType: "json",
+          success: function (dat) {
+
+              var d = dat['data'];
+             document.getElementById('textfield').value=d;
+             var ff = $("#pasId").val()+"/"+d;
+          var newText2 = currentHref.replace('here', ff);
+          var newText = currentHref.replace('here', ff);
+              if (newText2.split('/')[4] === (d)){
+                  var ll = $("#pasId").val()+"/"+d;
+                  $('#makePaymentBtn').attr('href', l2);
+              }else{
+                  var ll = $("#pasId").val()+"/"+d;
+                  var l2 = newText.replace(newText2.split('/')[4], d);
+                  $('#makePaymentBtn').attr('href', l2);
+              }
+{#          $('#makePaymentBtn').attr('href', newText1);#}
+          },
+          error: function (ts) {
+
+              alert('no');
+
+          },
+          complete: function (ts) {
+
+          }
+      });
+    });
+
+
+    $(document).ready(function() {
+  $('#makePaymentBtn').on('click', function(event) {
+    // Check if any radio button with name 'select3' is checked
+    if ($('input[name="select3"]:checked').length === 0) {
+      // No radio button is checked, prevent the link click
+      alert('Please select a duration before making a payment.');
+      event.preventDefault();
+    }
+    // If a radio button is checked, proceed with the link click
+  });
+});
+</script>
+
+</body>
+{% endblock %}

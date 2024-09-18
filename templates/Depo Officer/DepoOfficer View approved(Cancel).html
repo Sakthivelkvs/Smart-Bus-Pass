@@ -1,0 +1,36 @@
+{% extends 'Depo Officer/officer_home_index.html' %}
+{% block body %}
+
+<body>
+        <form id="form1" name="form1" method="post" action="/myapp/view_approved_cancel_post/">
+    {% csrf_token %}
+  <table class="table table-bordered">
+    <tr>
+      <td>
+      <input type="text" name="textfield" id="textfield" placeholder="Search by Name" class="form-control" required/></td>
+      <td width="80px"><input type="submit" name="button" id="button" value="Search"  class="btn btn-success"/></td>
+    </tr>
+
+  </table>
+  <table class="table table-bordered">
+    <tr>
+      <th>SL.No</th>
+      <th>UserName</th>
+      <th>Date</th>
+      <th>Reason</th>
+      <th>Status</th>
+    </tr>
+       {% for i in data %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ i.PASS_REQ.USERS.Name }}</td>
+      <td>&nbsp;{{ i.Date }}</td>
+      <td>{{ i.Reason }}</td>
+      <td>&nbsp;{{ i.Status }}</td>
+    </tr>
+      {% endfor %}
+  </table>
+  <p>&nbsp;</p>
+</form>
+</body>
+{% endblock %}

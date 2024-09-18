@@ -1,0 +1,215 @@
+{% extends 'User/user_hm_index.html' %}
+{% block body %}
+
+<body>
+<form id="myForm" name="form1" method="post" action="/myapp/pass_request_post/" enctype="multipart/form-data">
+    {% csrf_token %}
+<input type="hidden" name="did" value="{{ did }}">
+  <table class=" table table-bordered">
+    <tr>
+      <th>From Place</th>
+      <td>
+          <select name="select1" id="select1">
+              {% for i in data %}
+              <option value="{{ i.From_Place }}">{{ i.From_Place }} ({{ i.Type }})</option>
+              {% endfor %}
+
+          </select>
+
+
+{#      <input type="text" name="textfield3" id="textfield3" class="form-control" required/>#}
+{#      #}
+      </td>
+    </tr>
+    <tr>
+      <th>To Place</th>
+      <td>
+          <select name="select2" id="select2">
+              {% for i in data %}
+              <option value="{{ i.To_Place }}">{{ i.To_Place }} ({{ i.Type }})</option>
+              {% endfor %}
+
+          </select>
+{#      <input type="text" name="textfield2" id="textfield2" class="form-control" required/></td>#}
+    </tr>
+    <tr>
+      <th>Type</th>
+      <td><label for="select5"></label>
+        <select name="select4" onchange="changeN()" id="select4">
+            <option>Student</option>
+            <option>Normal</option>
+      </select></td>
+    </tr>
+    <tr>
+      <th>Time Period</th>
+      <td style="display: none" id="Normal">
+          <input type="radio" name="select3" id="select3" value="1months"/>1 Month<br>
+          <input type="radio" name="select3" id="select3" value="3months"/>3 Month<br>
+          <input type="radio" name="select3" id="select3" value="6months"/>6 Month<br>
+        </td>
+        <td id="Student" style="display: none">
+          <input type="radio" name="select3" id="select3" value="12months"/>1 year<br>
+        </td>
+    </tr>
+    <tr>
+      <th>Amount</th>
+      <td>
+      <input type="text" name="textfield" id="textfield" class="form-control" readonly=""/></td>
+    </tr>
+    <tr>
+{#      <tr>#}
+{#          <th>Date</th>#}
+{#          <td>#}
+{#          <input type="date" name="textfield2" id="textfield2" class="form-control" required /></td>#}
+{#      </tr>#}
+        <th>ID Proof</th>
+      <td><label for="fileField"></label>
+      <input type="file" name="fileField" id="fileField" required=""/></td>
+        </tr>
+  <tr colspan="2">
+      <td></td>
+      <td align="center"><input type="submit" name="button" id="button" value="Submit" class="btn btn-success"/></td>
+    </tr>
+  </table>
+
+    <script>
+        function changeN() {
+        var Normal=document.getElementById('Normal');
+        var Student=document.getElementById('Student');
+            var sel = document.getElementById('select4');
+{#            alert(sel.value);#}
+            if (sel.value == 'Normal') {
+                Normal.style.display = 'block';
+                Student.style.display = 'none';
+            }
+            if (sel.value == 'Student') {
+                Normal.style.display = 'none';
+                Student.style.display = 'block';
+            }
+        }
+
+
+    </script>
+</form>
+
+
+<script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
+    </script>
+<script  type="text/javascript" >
+
+    $(document).on('change','#select3',function () {
+
+        $("#select3").val();
+        $s=$('input[type=radio]:checked',
+                '#myForm').val();
+{#        alert($s);#}
+{##}
+{##}
+{#        alert( $("#select1").val());#}
+{#        alert( $("#select2").val());#}
+
+
+
+        $.ajax({
+          url: "/myapp/calculate/",
+          type: "POST",
+          data: {
+              'select': $("#select1").val(),
+              'select2':$("#select2").val(),
+              'select3':$s,
+              'select4':$("#select4").val(),
+          },
+          dataType: "json",
+          success: function (dat) {
+
+{#              $("#select1").empty();#}
+              var d = dat['data'];
+              alert(d);
+
+
+ document.getElementById('textfield').value=d;
+
+
+
+
+
+          },
+          error: function (ts) {
+
+              alert('no');
+
+          },
+          complete: function (ts) {
+
+          }
+      });
+
+
+
+
+
+
+
+
+
+    });
+
+
+
+
+
+{#  $(document).on('change','#select1',function () {#}
+{##}
+{#      alert('haiii');#}
+{##}
+{##}
+{##}
+
+{##}
+{##}
+{#  });#}
+
+
+{#  $(document).on('change','#select',function () {#}
+{##}
+{#      var cid = $('#select').find(":selected").val();#}
+{##}
+{##}
+{#            $.ajax({#}
+{#            url: "/getbatch",#}
+{#            type: "POST",#}
+{#            data: {#}
+{##}
+{#                'cid':cid#}
+{##}
+{##}
+{#            },#}
+{#            dataType: "json",#}
+{#            success: function(dat) {#}
+{##}
+{#                $("#select4").empty();#}
+{#                var d=dat['data'];#}
+{#                for(var i=0;i<=d.length;i++)#}
+{#                {#}
+{#                    $("#select4").append("<option value='"+d[i]['batchid']+"'>"+d[i]['intake']+'-'+d[i]['yearofend']+"</option>")#}
+{#                }#}
+{##}
+{#            },#}
+{#            error: function(ts) {#}
+{##}
+{#                alert('no');#}
+{##}
+{#            },#}
+{#            complete:function (ts) {#}
+{##}
+{#            }#}
+{#        });#}
+{#      #}
+{#  });#}
+</script>
+
+
+
+</body>
+{%endblock%}

@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<form action="/myapp/user_ui_post/" method="post" enctype="multipart/form-data" name="form1" id="form1">
+    {% csrf_token %}
+  <table width="200" border="1">
+    <tr>
+      <td>Name</td>
+      <td><label for="textfield"></label>
+      <input type="text" name="textfield" id="textfield" pattern="[A-Z / a-z]+" required="" /></td>
+    </tr>
+    <tr>
+      <td>Gender</td>
+      <td><p>
+        <label>
+          <input type="radio" name="RadioGroup1" value="Male" id="RadioGroup1_0" />
+          Male</label>
+        <br />
+        <label>
+          <input type="radio" name="RadioGroup1" value="Female" id="RadioGroup1_1" />
+          Female</label>
+        <br />
+        <label>
+          <input type="radio" name="RadioGroup1" value="Others" id="RadioGroup1_2" />
+          Others</label>
+        <br />
+      </p></td>
+    </tr>
+    <tr>
+      <td>Date of Birth</td>
+      <td><label for="textfield2"></label>
+      <input type="date" name="textfield2" id="textfield2" required="" /></td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td><label for="textfield2"></label>
+      <input type="mail" name="textfield3" id="textfield2" required="" /></td>
+    </tr>
+    <tr>
+      <td>Phone Number</td>
+      <td><label for="textfield2"></label>
+      <input type="text" name="textfield4" id="textfield2" pattren="[6789][1-9] {9}" max="10" required=""/></td>
+    </tr>
+    <tr>
+      <td>House Name</td>
+      <td><input type="text" name="textfield5" id="textfield3" required=""/></td>
+    </tr>
+    <tr>
+      <td>Place</td>
+      <td><input type="text" name="textfield6" id="textfield4" required=""/></td>
+    </tr>
+    <tr>
+      <td>City</td>
+      <td><input type="text" name="textfield7" id="textfield5" required=""/></td>
+    </tr>
+    <tr>
+      <td>State</td>
+      <td><input type="text" name="textfield9" id="textfield7" required=""/></td>
+    </tr>
+    <tr>
+      <td>Pincode</td>
+      <td><input type="text" name="textfield8" id="textfield6"  pattern="[0-9] {6}" max="6" required=""/></td>
+    </tr>
+    <tr>
+      <td>Photo</td>
+      <td><label for="fileField"></label>
+      <input type="file" name="fileField" id="fileField" required=""/></td>
+    </tr>
+    <tr>
+      <td>Create Password</td>
+      <td><input type="text" name="textfield10" id="textfield8" required=""/></td>
+    </tr>
+    <tr>
+      <td>Confirm Password</td>
+      <td><input type="text" name="textfield11" id="textfield9" required=""/></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="button" id="button" value="Submit" /></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

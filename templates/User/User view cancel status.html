@@ -1,0 +1,29 @@
+{% extends 'User/user_hm_index.html' %}
+{% block body %}
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <table class="table table-bordered">
+          <tr>
+      <th>Name</th>
+        <td>{{ data.PASS_REQ.USERS.Name }}</td>
+    </tr>
+  <tr>
+      <th>Type</th>
+      <td>{{ data.PASS_REQ.Type }}</td>
+      </tr>
+  <tr>
+      <th>Date</th>
+      <td>{{ data.Date }}</td>
+  </tr>
+  <tr>
+      <th>Status</th>
+      <td>{{ data.Status }}</td>
+  </tr>
+  <tr>
+      <th>Reason</th>
+      <td>{{ data.Reason }}</td>
+  </table>
+</form>
+</body>
+{% endblock %}

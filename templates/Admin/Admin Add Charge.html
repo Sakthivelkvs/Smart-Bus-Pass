@@ -1,0 +1,38 @@
+
+{% extends 'Admin/admin_hm_index.html' %}
+{% block body %}
+<body>
+<form id="form1" name="form1" method="post" action="/myapp/add_charge_post/">
+    {% csrf_token %}
+  <table class="table table-bordered">
+    <tr>
+      <th>From Place</th>
+      <td><label for="textfield"></label>
+      <input type="text" name="textfield" id="textfield" class="form-control" required/></td>
+    </tr>
+    <tr>
+      <th>To Place</th>
+      <td><label for="textfield2"></label>
+      <input type="text" name="textfield2" id="textfield2" class="form-control" required/></td>
+    </tr>
+    <tr>
+      <th>Type</th>
+      <td><label for="select"></label>
+        <select name="select" required id="select">
+            <option>Student</option>
+            <option>Normal</option>
+      </select></td>
+    </tr>
+    <tr>
+      <th>Amount</th>
+      <td><input type="text" name="textfield3" id="textfield3" class="form-control" required /></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="button" id="button" value="Submit" class="btn btn-success"/></td>
+    </tr>
+  </table>
+</form>
+</body>
+{% endblock %}
+

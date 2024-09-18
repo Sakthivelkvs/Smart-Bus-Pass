@@ -1,0 +1,40 @@
+{% extends 'User/user_hm_index.html' %}
+{% block body %}
+
+<body>
+<form id="form1" name="form1" method="post" action="/myapp/user_view_charges_post/">
+    {% csrf_token %}
+  <table class="table table-bordered">
+    <tr>
+
+          <th>From Place</th>
+      <td><input type="text" name="textfield" id="textfield" class="form-control"  required />
+        </td>
+        <th>To Place</th>
+      <td><input type="text" name="textfield2" id="textfield2" class="form-control" required /></td>
+      <td width="80px"><input type="submit" name="button" id="button" value="Search" class=" btn btn-outline-info"/></td>
+    </tr>
+  </table>
+  <table class="table table-bordered">
+    <tr>
+      <th>SL.No</th>
+      <th>From place</th>
+      <th>To Place</th>
+      <th>Type</th>
+      <th>Amount</th>
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>&nbsp;{{ i.From_Place }}</td>
+      <td>{{ i.To_Place }}</td>
+      <td>&nbsp;{{ i.Type }}</td>
+      <td>{{ i.Amouont }}&nbsp;</td>
+   
+    </tr>
+      {% endfor %}
+  </table>
+  <p>&nbsp;</p>
+</form>
+</body>
+{% endblock %}
